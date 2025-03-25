@@ -18,12 +18,13 @@ import earth.worldwind.layer.atmosphere.AtmosphereLayer
 /**
  * This activity manifests two side-by-side globes with an adjustable splitter
  */
-open class MultiGlobeActivity: AbstractMainActivity() {
+open class MultiGlobeActivity: AbstractMainActivity() { // TODO
     /**
      * This protected member allows derived classes to override the resource used in setContentView.
      */
     protected var layoutResourceId = R.layout.activity_globe
     protected var deviceOrientation = 0
+
     /**
      * The WorldWindow (GLSurfaceView) maintained by this activity
      */
