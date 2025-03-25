@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/video_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <earth.worldwind.examples.autel.AutelPlayerSurfaceView
+                android:id="@+id/autel_surface"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <FrameLayout
+                android:id="@+id/globe_one"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/globe_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:background="#80000000"
+        android:padding="12dp"
+        android:layout_margin="12dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Second Map"
+            android:textSize="18dp"
+            android:checked="true"
+            android:textColor="#ffffff"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_roads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roads"
+            android:textSize="18dp"
+            android:checked="true"
+            android:textColor="#ffffff"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_polygones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Polygones"
+            android:textSize="18dp"
+            android:checked="true"
+            android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
+</FrameLayout>

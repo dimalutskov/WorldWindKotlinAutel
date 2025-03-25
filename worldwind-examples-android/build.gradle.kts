@@ -41,5 +41,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.mil.sym.android)
 
+    implementation(files("libs/autel-sdk-release.aar"))
+
+    implementation("com.google.protobuf:protobuf-java:3.25.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.okhttp3:okhttp-dnsoverhttps:4.12.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.11.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.11.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
     coreLibraryDesugaring(libs.desugar)
 }
