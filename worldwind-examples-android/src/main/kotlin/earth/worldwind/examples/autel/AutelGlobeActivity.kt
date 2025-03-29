@@ -1,5 +1,6 @@
 package earth.worldwind.examples.autel
 
+import android.graphics.PixelFormat
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import earth.worldwind.ogc.GpkgContentManager
 import earth.worldwind.render.Color
 import earth.worldwind.shape.Polygon
 import earth.worldwind.shape.ShapeAttributes
+import earth.worldwind.util.kgl.TranslucentEGLConfigChooser
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -129,7 +131,9 @@ class AutelGlobeActivity : AppCompatActivity() {
     private fun createWorldWindow(isFullMap: Boolean): WorldWindow {
         val contentManager = GpkgContentManager(File(cacheDir, "cache_content.gpkg").absolutePath)
         // Create the WorldWindow (a GLSurfaceView) which displays the globe.
-        val wwd = WorldWindow(this)
+        val wwd = WorldWindow(this, TranslucentEGLConfigChooser()).apply {
+            holder.setFormat(PixelFormat.TRANSLUCENT)
+        }
         // Setting up the WorldWindow's layers.
         wwd.engine.layers.apply {
             if (isFullMap) {
