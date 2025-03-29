@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <earth.worldwind.examples.autel.AutelPlayerSurfaceView
+            <com.autel.module_player.player.autelplayer.AutelPlayerSurfaceView
                 android:id="@+id/autel_surface"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

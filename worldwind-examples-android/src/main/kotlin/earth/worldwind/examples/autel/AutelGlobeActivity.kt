@@ -8,8 +8,10 @@ import android.widget.CheckBox
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.autel.drone.sdk.SDKConstants
-import com.autel.player.player.AutelPlayerManager
+import com.autel.drone.sdk.vmodelx.constants.SDKConstants
+import com.autel.module_player.player.AutelPlayerManager
+import com.autel.module_player.player.autelplayer.AutelPlayer
+import com.autel.module_player.player.autelplayer.AutelPlayerSurfaceView
 import earth.worldwind.WorldWindow
 import earth.worldwind.examples.R
 import earth.worldwind.geom.AltitudeMode
@@ -211,11 +213,16 @@ class AutelGlobeActivity : AppCompatActivity() {
         super.onStart()
 
         AutelPlayerManager.getInstance().init(this, false)
-        AutelPlayerManager.getInstance().addStreamChannel(SDKConstants.getZoomChancelId(), true)
-
-        autelSurface.onStart()
+        AutelPlayerManager.getInstance().registStremDataListener()
+        AutelPlayerManager.getInstance().startStreamChannel(SDKConstants.STREAM_CHANNEL_16110)
 
         AutelHelper.test(lifecycleScope)
+
+        AutelPlayer(SDKConstants.STREAM_CHANNEL_16110).apply {
+            addVideoView(autelSurface)
+            AutelPlayerManager.getInstance().addAutelPlayer(this)
+            startPlayer()
+        }
 
         for (wwd in worldWindows) wwd.onResume() // resumes a paused rendering thread
     }
@@ -223,13 +230,10 @@ class AutelGlobeActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 
-        AutelPlayerManager.getInstance().getAutelPlayer(SDKConstants.getZoomChancelId())?.also {
-            AutelPlayerManager.getInstance().removeAutelPlayer(it)
-        }
+        AutelPlayerManager.getInstance().endStreamChannel(SDKConstants.STREAM_CHANNEL_16110)
+        AutelPlayerManager.getInstance().unregistStreamDataListener()
         AutelPlayerManager.getInstance().destory()
         AutelPlayerManager.getInstance().release()
-
-        autelSurface.onStop()
 
         for (wwd in worldWindows) wwd.onPause() // pauses the rendering thread
     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Trust all hosts as we need to access unsecure WebRTC sources by local IP -->
+    <!-- TODO Find another approach for streaming to avoid trusting all hosts -->
+    <base-config cleartextTrafficPermitted="true"/>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">tile.stamen.com</domain>
+        <domain includeSubdomains="true">commondatastorage.googleapis.com</domain>
+    </domain-config>
+    <debug-overrides>
+        <trust-anchors>
+            <!-- Trust system added CAs while debuggable only -->
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </debug-overrides>
+</network-security-config>

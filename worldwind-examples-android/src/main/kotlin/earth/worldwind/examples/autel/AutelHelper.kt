@@ -44,6 +44,10 @@ object AutelHelper : IAutelDroneListener {
         SDKManager.get().getDeviceManager().addDroneListener(this)
     }
 
+    override fun onCameraAbilityFetchListener(fetched: Boolean) {
+
+    }
+
     override fun onDroneChangedListener(connected: Boolean, drone: IBaseDevice) {
         if (connected) {
            subscribe()
